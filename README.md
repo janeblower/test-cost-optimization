@@ -14,20 +14,20 @@ The skill instructions are in [SKILL.md](SKILL.md).
 
 ## Installation
 
-Install for your user with Git (the destination must not already exist):
+Install for your user with curl (overwrites an existing `SKILL.md`):
 
 **Claude Code**
 
 ```sh
-mkdir -p ~/.claude/skills
-git clone https://github.com/janeblower/test-cost-optimization.git ~/.claude/skills/test-cost-optimization
+mkdir -p ~/.claude/skills/test-cost-optimization
+curl -fL https://raw.githubusercontent.com/janeblower/test-cost-optimization/main/SKILL.md -o ~/.claude/skills/test-cost-optimization/SKILL.md
 ```
 
 **Codex**
 
 ```sh
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/janeblower/test-cost-optimization.git "${CODEX_HOME:-$HOME/.codex}/skills/test-cost-optimization"
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills/test-cost-optimization"
+curl -fL https://raw.githubusercontent.com/janeblower/test-cost-optimization/main/SKILL.md -o "${CODEX_HOME:-$HOME/.codex}/skills/test-cost-optimization/SKILL.md"
 ```
 
 Restart the agent to discover the skill.
