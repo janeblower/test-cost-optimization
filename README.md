@@ -4,7 +4,9 @@ An agent skill for reducing unnecessary test runs and keeping test output manage
 
 ## Problem
 
-Repeated broad test runs waste time, while verbose logs consume agent context and can bury the failures that matter.
+As a project grows, an AI coding agent adds tests for new features and regressions. The resulting suite provides valuable coverage, but running it broadly and repeatedly for every change takes more time as the project expands.
+
+Test output grows too. When an agent reads long logs, polls jobs frequently, or revisits the same results, it spends more tokens and context on verification. A task similar to one that was inexpensive earlier in the project can therefore become slower and more costly, even when the change itself is no more complex. Verbose output can also bury the failures that matter.
 
 ## Approach
 
