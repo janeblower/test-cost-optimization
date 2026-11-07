@@ -21,7 +21,15 @@ Reduce redundant work and output without weakening required checks. Choosing a b
 
 Prefer an existing project runner or framework reporting facility. Capture complete stdout and stderr in a unique, non-overwriting log when appropriate, and return a concise summary: command outcome and exit status, duration, recognizable test counts including skipped or ignored tests, and log location. On failure, include failing case names and a bounded diagnostic excerpt; inspect the relevant part of the full log if the summary is insufficient. Never infer overall success from partial suite counts: use the command's actual exit status, and state when a summary cannot be parsed. Preserve launch errors, cancellation, and signal behavior. Do not stack redundant wrappers around an existing runner.
 
-When creating or changing test reporting infrastructure, verify its handling of full logs, bounded diagnostics, skips, failed launches, failures after successful suites, and interruption where applicable. Adapt parsing to the actual framework; don't assume a particular output format.
+## Verify test infrastructure
+
+When creating or substantially changing a test runner, wrapper, or reporting tool, test the trustworthiness of its results. Choose cases based on what the tool actually does and the risk of hiding or misrepresenting a failure. Useful cases include:
+
+- A later failure after a successful suite remains a failure, with the correct exit status.
+- Full output is retained even when the displayed diagnostics are bounded.
+- Skips, launch errors, unrecognized summaries, and interruptions are reported or propagated correctly, where applicable.
+
+Exercise observable behavior, including the boundary with the underlying test process. Adapt parsing to the actual framework and avoid tests that merely duplicate the implementation. This is verification of the infrastructure, not a requirement to write tests for every individual test. Do not rewrite or retest a reliable existing tool solely because this skill is used.
 
 ## Write diagnostic tests
 
